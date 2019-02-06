@@ -1,0 +1,95 @@
+
+/*
+  Design an online hotel booking system
+*/
+
+//Hotel system functionality:
+-User can search for hotels
+-User can book a room in a hotel
+-User can remove booking
+-User must update checkout once done
+-User can view hotel and room info
+-User can filter hotels by price, stars, city
+-User can know if hotel is full for given date in search
+
+//Classes and definitions:
+
+public class Hotel {
+private List rooms;
+private List currentBookings;
+private Address address;
+private int hotelId;
+private int stars;
+private String hotelName;
+List getListOfFreeRooms(startDate, endDate, price, numBeds, floor, maxPeople, numBeds); //go through list of rooms not booked on those dates
+void removeBooking(RoomBooking room); //go through and remove booking for check out or cancel
+void addBooking(RoomBooking room); //go through and add booking
+void modifyBooking(RoomBooking room); //edited booking for dates or persons
+}
+
+public class User {
+private String name;
+private List paymentInfo;
+private Date dateOfBirth;
+//getters
+}
+
+public class Address {
+private String city;
+private String country;
+private String streetAddress;
+private String province;
+//getters
+}
+
+public class Room {
+private int dailyPrice;
+private String size;
+private int numBeds;
+private int floor;
+private int maxPeople;
+private int roomNumber;
+private boolean hasKitchen;
+private boolean isSmokingAllowed;
+private boolean isOccupied;
+//getters
+}
+
+public class RoomBooking {
+private Date startDate;
+private Date endDate;
+private int roomId;
+private Room room;
+private User user;
+private String hotelName;
+}
+
+public class Response {
+private T object;
+private boolean success;
+private String jsonBody;
+private int statusCode;
+}
+
+public class HotelManager {
+List searchHotels(String city, int lowPrice, int highPrice, int stars);
+List searchRooms(Hotel hotel, int startDate, int endDate);
+Response bookRoom(Room room, int startDate, int endDate, User user);
+Response modifyBooking(RoomBooking room);
+Response getHotelInfo(Hotel hotel)
+Response getRoomInfo(Room room)
+Response getPrice(RoomBooking room);
+}
+
+//Backend Data Storage:
+-store in roombooking table, room table, hotel table, user table, address table
+-use orm framework for domain mapping, to return what we have
+-database will shard tables based on ID, use consistent hashing to ensure all hotels can be retrieved consistently
+-cache used for hotels in cities frequently searched
+
+//Web API:
+-Hotel Manager will map controller methods to user routes, it will take in json or primitive types passed in via 
+javascript frontend, html, css.
+
+//Frontend design:
+-Frontend Javascript classes to capture Room, User, Address, Hotel, RoomBooking and render it.
