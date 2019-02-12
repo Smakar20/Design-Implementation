@@ -1,0 +1,36 @@
+/*
+Design a deck of cards.
+*/
+
+// features
+- total 52 cards
+- 4 suits
+- face value range 1-13
+
+var suits = {
+'spade': 0,
+'heart': 1,
+'club': 2,
+'diamond': 3
+};
+
+class Card {
+  constructor(suit, faceValue){
+    this.suit = suit;
+    this.faceValue = faceValue;
+  }
+}
+
+class Deck {
+  constructor(){
+   this.cardDeck = [];
+  }
+  
+  function buildDeck(){
+    for (var i = 1; i <= 13; i++){
+      for (var s in suits){
+        this.cardDeck.push(new Card(suits[s], i));
+      }
+    }
+  }
+}
