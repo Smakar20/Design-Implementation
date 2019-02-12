@@ -93,3 +93,7 @@ javascript frontend, html, css.
 
 //Frontend design:
 -Frontend Javascript classes to capture Room, User, Address, Hotel, RoomBooking and render it.
+
+
+
+
